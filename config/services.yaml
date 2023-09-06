@@ -1,0 +1,54 @@
+parameters:
+    locale: 'en'
+    email_contact: 'contact@example.com'
+    email_name: 'Contact AppName'
+    email_sender: 'no-reply@example.com'
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        bind:
+            $baseLocaleCode: '%locale%'
+            $cacheDir: '%kernel.cache_dir%'
+            $environment: '%kernel.environment%'
+            $locale: '%locale%'
+            $publicDir: '%kernel.project_dir%/public'
+            $syliusResources: '%sylius.resources%' # for api
+            $testsDir: '%kernel.project_dir%/tests'
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/*'
+        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+
+    # controllers are imported separately to make sure services can be injected
+    # as action arguments even if you don't extend any base controller class
+    App\Controller\:
+        resource: '../src/Controller'
+        tags: ['controller.service_arguments']
+
+    App\Menu\PetFormBuilder:
+        tags:
+            - { name: knp_menu.menu_builder, method: createMenu, alias: app.backend.pet_form }
+
+    App\Grid\Filter\TaxonFilter:
+        tags:
+            - { name: 'sylius.grid_filter', type: 'taxon_filter', form_type: App\Form\Filter\TaxonFilterType }
+
+    app.grid.filter.frontend_select:
+        class: Sylius\Component\Grid\Filter\SelectFilter
+        tags:
+            - { name: 'sylius.grid_filter', type: 'frontend_select', form_type: Sylius\Bundle\GridBundle\Form\Type\Filter\SelectFilterType }
+
+    App\OpenApi\JwtDecorator:
+        decorates: 'api_platform.openapi.factory'
+        arguments: ['@.inner']
+
+    App\Serializer\FileNormalizer:
+        decorates: 'api_platform.jsonld.normalizer.item'
+        arguments: ['@.inner' ]
+
+    Sylius\Component\Customer\Context\CustomerContextInterface: '@App\Context\CustomerContext'

@@ -1,0 +1,36 @@
+{% extends 'frontend/layout.html.twig' %}
+
+{% form_theme form 'frontend/form/theme.html.twig' %}
+
+{% block content %}
+    <div class="grid-container grid-x align-center loginpage">
+        <div class="cell large-3 login">
+            <div class="login-section">
+                <div id="login-logo">
+                    <i class="fas fa-user"></i>
+                    <i class="fas fa-long-arrow-alt-right"></i>
+                </div>
+                <h2>{{ 'sylius.ui.login'|trans }}</h2>
+                <h3>{{ 'app.ui.happy_to_see_you_again'|trans }}</h3>
+                {{ form_start(form, {'action': path('app_frontend_login_check'), 'attr': {'class': 'form', 'novalidate': 'novalidate'}}) }}
+                {% include 'frontend/login/_form.html.twig' %}
+
+                <button type="submit" class="button">{{ 'sylius.ui.login'|trans }}</button>
+                <input type="hidden" name="_csrf_shop_security_token" value="{{ csrf_token('shop_authenticate') }}">
+
+                {{ form_end(form, {'render_rest': true}) }}
+            </div>
+        </div>
+        <div class="cell medium-3 register">
+            <div class="register-section">
+                <div id="register-logo">
+                    <i class="fas fa-user"></i>
+                    <i class="fas fa-plus"></i>
+                </div>
+                <h2>{{ 'sylius.ui.register'|trans }}</h2>
+                <h3>{{ 'app.ui.it_is_nice_to_meet_you'|trans }}</h3>
+                {% include 'frontend/login/_register.html.twig' %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

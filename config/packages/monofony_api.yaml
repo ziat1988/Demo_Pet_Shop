@@ -1,0 +1,14 @@
+api_platform:
+    version: !php/const App\Kernel::VERSION
+    swagger:
+        versions: [3]
+        api_keys:
+            apiKey:
+                name: Authorization
+                type: header
+
+framework:
+    serializer:
+        enabled: true
+        mapping:
+            paths: ['%kernel.project_dir%/config/serialization/']

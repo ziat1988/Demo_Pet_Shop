@@ -1,0 +1,9 @@
+{% macro render(paginator, options) %}
+    {% if paginator.haveToPaginate %}
+        <div class="row text-center">
+            <div class="small-12 columns">
+                {{ pagerfanta(paginator, 'twig', options|default({'template': '@BabDevPagerfanta/foundation6.html.twig'})) }}
+            </div>
+        </div>
+    {% endif %}
+{% endmacro %}

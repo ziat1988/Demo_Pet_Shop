@@ -1,0 +1,21 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+sylius_backend_taxon_index:
+    path: /admin/taxa/
+    methods: [GET]
+    defaults:
+        _controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController
+        route: sylius_backend_taxon_create
+        permanent: true
+
+sylius_backend_ajax_taxon_move:
+    path: /admin/taxa/{id}/move
+    methods: [PUT]
+    defaults:
+        _controller: sylius.controller.taxon:updateAction
+        _format: json
+        _sylius:
+            permission: true
+            form: App\Form\Type\Taxonomy\TaxonPositionType
