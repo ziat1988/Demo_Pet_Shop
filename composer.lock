@@ -14082,16 +14082,16 @@
         },
         {
             "name": "dbrekelmans/bdi",
-            "version": "1.0",
+            "version": "1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dbrekelmans/bdi.git",
-                "reference": "bdc41bd339558242bf748b99c394a78e2dfbdb4f"
+                "reference": "574d3f5b4f6155acfb43def0461ea3a63fbdcf95"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dbrekelmans/bdi/zipball/bdc41bd339558242bf748b99c394a78e2dfbdb4f",
-                "reference": "bdc41bd339558242bf748b99c394a78e2dfbdb4f",
+                "url": "https://api.github.com/repos/dbrekelmans/bdi/zipball/574d3f5b4f6155acfb43def0461ea3a63fbdcf95",
+                "reference": "574d3f5b4f6155acfb43def0461ea3a63fbdcf95",
                 "shasum": ""
             },
             "require": {
@@ -14125,9 +14125,9 @@
                 "browser-driver-installer"
             ],
             "support": {
-                "source": "https://github.com/dbrekelmans/bdi/tree/1.0"
+                "source": "https://github.com/dbrekelmans/bdi/tree/1.0.5"
             },
-            "time": "2021-10-16T09:40:32+00:00"
+            "time": "2023-09-11T09:00:16+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -18880,5 +18880,5 @@
         "php": "^8.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.3.0"
 }
